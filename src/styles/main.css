@@ -1,0 +1,191 @@
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+/* variables for root */
+:root{
+  --primary : #f0eee9;
+  --secondary : #000000;
+  --primary-light : #fff;
+  --secondary-light : #5c5c5c;
+  --font : 1.4rem;
+  --font-h1: 2.2rem;
+  --font-h3: 1.8rem;
+  --font-p: 1.2rem;
+  --font-weigth : 600 ;
+  --header-heigth : 10vh;
+}
+/* variables in darktheme */
+.dark-mode{
+  --primary : #e4e0d0;
+  --secondary : #000000;
+  --primary-light : #fff;
+  --secondary-light : #5c5c5c;
+}
+/* size fonts on all html */
+html{
+  font-size: 62.5%;
+}
+/* color to the body */
+body{
+  background-color: var(--primary-light);
+}
+/* size width and height of header */
+header{
+  width: 100%;
+  height: auto;
+}
+/* size of navbar and display and position */
+header nav{
+  width: 100%;
+  height: var(--header-heigth);
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: var(--primary-light);
+  position: fixed;
+  z-index: 2;
+}
+/* decoration to the ancors */
+a{
+  text-decoration: none;
+  color: var(--secondary);
+}
+/* style of the list navbar an display */
+header nav ul.nav--list{
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+/* size of texts and icons from navbar lists */
+header nav ul .icons{
+  font-size: var(--font);
+  font-weight: var(--font-weigth);
+  text-align: center;
+}
+/* on mouse position cursor transform in hand touch */
+.cursor{
+  cursor: pointer;
+}
+/* size of the main, display and padding top for resolve position fixed of navbar */
+main{
+  padding-top: 12vh;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+/* size, aling and color of the h1  */
+main h1{
+  color: var(--secondary);
+  font-size: var(--font-h1);
+  text-align: center;
+}
+/* size of products container and display */
+main .main--products-container{
+  width: 90%;
+  min-width: 288px;
+  max-width: 1000px;
+  margin: 0 auto;
+  gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+/* size of the cards  and color */
+.cards{
+  width:260px;
+  height: auto;
+  background-color: var(--primary-light);
+  position: relative;
+}
+/* size and before of image container */
+.cards .image--container{
+  width: 100%;
+  height: 250px;
+  z-index: 0;
+  position: relative;
+}
+.cards .image--container::before{
+  content: "";
+  width:100% ;
+  height: 100%;
+  background: linear-gradient(10deg, rgba(0, 0, 255, 0.316) , rgba(255, 0, 0, 0.251) );
+  position: absolute;
+  z-index: -1;
+}
+/* size of the images into cards */
+.cards img{
+  width:100% ;
+  height: 100%;
+  background-color: var(--primary);
+}
+/* when have it this class background changed to transparency */
+.cards img.img_transparency{
+  background-color: transparent;
+}
+.product-props{
+  width: 100%;
+  height: auto;
+  gap: 10px;
+  padding: 24px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.product-props h3{
+  width: 70%;
+  font-weight: 400;
+  align-items: baseline;
+  font-size: var(--font-h3);
+  color: var(--secondary);
+}
+.product-props .price{
+  width: 20%;
+  font-size: var(--font-h1);
+  font-weight:500;
+  color: var(--secondary);
+}
+.product-props .category{
+  width: 40%;  
+  font-size: var(--font);
+  color: var(--secondary-light);
+  font-weight: 500;
+}
+.product-props .stock{
+  width: 50%;  
+  text-align: end;
+  font-size: var(--font);
+  color: var(--secondary-light);
+  font-weight: 400;
+}
+.product-props .title{
+  width: 100%;  
+  font-size: var(--font);
+  color: var(--secondary);
+  font-weight: 500;
+}
+.product-props .sizes{
+  width: 100%;  
+  font-size: var(--font);
+  color: var(--secondary-light);
+  font-weight: 500;
+}
+.product-props .colors-container{
+  width: 100%;  
+  display: flex;
+  gap: 10px;
+}
+.product-props .cube-color{
+  width: 2rem;  
+  height: 2rem;
+}
+
+.red{
+  background-color: red;
+}
