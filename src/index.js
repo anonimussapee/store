@@ -27,7 +27,7 @@ let data = [
     price : 20.0,
     cant : 4,
     sizes : ["XS", "S", "M", "L", "XL", "XXL"],
-    colors : ["blue", "red", "black", "gris"],
+    colors : ["blue", "red", "black", "gray"],
   },
   {
     id : 4,
@@ -112,7 +112,10 @@ let view = ``;
 data.forEach(item=>{
   let card = `<article class="cards">
   <div class="image--container">
-  <img src="${item.img}" alt="" class="img_transparency" loading="easy">
+  <img src="${item.img}" alt="" class="img__prod" loading="easy">
+  <div class="cards__buttons-container">
+            <button>Agregar al carrito</button><button>detalles</button>
+          </div>  
   </div>
   <div class="product-props">
     <h3>${item.title}</h3>
@@ -123,7 +126,7 @@ data.forEach(item=>{
     <p class="sizes light">`;
 
     for (const size of item.sizes) {
-       card +=`<span class="cube-color">${size}, </span>`;
+       card +=`<span >${size}, </span>`;
       }
 
     card += `</p>

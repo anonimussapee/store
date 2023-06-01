@@ -3,6 +3,13 @@
   padding: 0;
   margin: 0;
 }
+@font-face {
+  font-family: 'Ubuntu Condensed';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../assets/fonts/ubuntu.woff2) format('woff2');
+}
 /* variables for root */
 :root{
   --primary : #f0eee9;
@@ -10,10 +17,10 @@
   --primary-light : #fff;
   --secondary-light : #5c5c5c;
   --font : 1.4rem;
-  --font-h1: 2.2rem;
-  --font-h3: 1.8rem;
-  --font-p: 1.2rem;
-  --font-weigth : 600 ;
+  --font-big: 2.2rem;
+  --font-medium: 1.8rem;
+  --font-weigth-soft:500;
+  --font-weigth-medium : 600 ;
   --header-heigth : 10vh;
 }
 /* variables in darktheme */
@@ -26,10 +33,12 @@
 /* size fonts on all html */
 html{
   font-size: 62.5%;
+
+  font-family: 'Ubuntu Condensed', sans-serif;
 }
 /* color to the body */
 body{
-  background-color: var(--primary-light);
+  background-color: var(--primary);
 }
 /* size width and height of header */
 header{
@@ -64,7 +73,7 @@ header nav ul.nav--list{
 /* size of texts and icons from navbar lists */
 header nav ul .icons{
   font-size: var(--font);
-  font-weight: var(--font-weigth);
+  font-weight: var(--font-weigth-medium);
   text-align: center;
 }
 /* on mouse position cursor transform in hand touch */
@@ -73,7 +82,7 @@ header nav ul .icons{
 }
 /* size of the main, display and padding top for resolve position fixed of navbar */
 main{
-  padding-top: 12vh;
+  padding: 12vh 0;
   width: 100%;
   height: auto;
   display: flex;
@@ -84,7 +93,7 @@ main{
 /* size, aling and color of the h1  */
 main h1{
   color: var(--secondary);
-  font-size: var(--font-h1);
+  font-size: var(--font-big);
   text-align: center;
 }
 /* size of products container and display */
@@ -101,16 +110,20 @@ main .main--products-container{
 /* size of the cards  and color */
 .cards{
   width:260px;
-  height: auto;
+  height:400px;
   background-color: var(--primary-light);
   position: relative;
+  overflow: hidden;
 }
+
 /* size and before of image container */
 .cards .image--container{
   width: 100%;
-  height: 250px;
+  height: 320px;
   z-index: 0;
   position: relative;
+  display: flex;
+  align-items: center;
 }
 .cards .image--container::before{
   content: "";
@@ -125,30 +138,73 @@ main .main--products-container{
   width:100% ;
   height: 100%;
   background-color: var(--primary);
+  transition: all .3s;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
-/* when have it this class background changed to transparency */
-.cards img.img_transparency{
+/* when hover cards changed to transparency and look at button */
+.cards:hover  .img__prod{
   background-color: transparent;
+  top: -2px;
+  transition: all .3s;
 }
+/* button cards visibility when cursor hover */
+.cards:hover .cards__buttons-container{
+  opacity: 1;
+  transition: all .3s;
+}
+/* details up to when hover */
+.cards:hover .product-props{
+  bottom: 0;
+  transition: all .3s;
+}
+/* size of product properties and your display */
 .product-props{
+  transition: all .3s;
   width: 100%;
   height: auto;
   gap: 10px;
   padding: 24px;
   display: flex;
   flex-wrap: wrap;
+  position: absolute;
+  bottom: -120px;
+  background-color: var(--primary-light);
+}
+/* size and position of buttons of cards */
+.cards__buttons-container{
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+  position: absolute;
+  width:100%;
+  opacity: 0;
+  transition: all .3s;
+  top: 45px;
+}
+/* size of cards buttons */
+.cards__buttons-container button{
+  width: 150px;
+  height: auto;
+  padding: 10px;
+  margin: 0 auto;
+  border-radius: 10px;
+  background-color: var(--primary);
+  font-size: var(--font);
+  font-weight: var(--font-weigth-medium);
+  border-style: none;
 }
 .product-props h3{
   width: 70%;
   font-weight: 400;
-  align-items: baseline;
-  font-size: var(--font-h3);
+  font-size: var(--font-medium);
   color: var(--secondary);
 }
 .product-props .price{
   width: 20%;
-  font-size: var(--font-h1);
-  font-weight:500;
+  font-size: var(--font-big);
+  font-weight:var(--font-weigth-soft);
   color: var(--secondary);
 }
 .product-props .category{
@@ -168,13 +224,13 @@ main .main--products-container{
   width: 100%;  
   font-size: var(--font);
   color: var(--secondary);
-  font-weight: 500;
+  font-weight: var(--font-weigth-soft);
 }
 .product-props .sizes{
   width: 100%;  
   font-size: var(--font);
   color: var(--secondary-light);
-  font-weight: 500;
+  font-weight: var(--font-weigth-soft);
 }
 .product-props .colors-container{
   width: 100%;  
@@ -184,8 +240,31 @@ main .main--products-container{
 .product-props .cube-color{
   width: 2rem;  
   height: 2rem;
+  border: 1px solid var(--secondary);
 }
 
 .red{
   background-color: red;
 }
+.gray{
+  background-color: gray;
+}
+
+.green{
+  background-color: green;
+}
+
+.blue{
+  background-color: blue;
+}
+
+.yellow{
+  background-color: yellow;
+}
+.black{
+  background-color: black;
+}
+.white{
+  background-color: white;
+}
+
