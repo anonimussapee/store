@@ -1,106 +1,44 @@
+document.addEventListener('DOMContentLoaded', ()=>{
+  cart = JSON.parse(localStorage.getItem('cart')) || [];
+  cartStatus.innerHTML = cart.length;
+});
 let data = [
-  {
-    id : 1,
-    title : "POLO ROJO",
-    img : "https://www.pngmart.com/files/3/Polo-Shirt-PNG-Image.png",
-    category : "shirt",
-    price : 10.0,
-    cant : 4,
-    sizes : ["XS", "S", "M", "L", "XL", "XXL"],
-    colors : ["blue", "red", "black", "white"],
-  },
-  {
-    id : 2,
-    title : "POLO VERDE",
-    img : "https://www.pngmart.com/files/3/Polo-Shirt-PNG-File.png",
-    category : "shirt",
-    price : 10.0,
-    cant : 4,
-    sizes : ["XS", "S", "M", "L", "XL", "XXL"],
-    colors : ["blue", "red", "black", "white", "green"],
-  },
-  {
-    id : 3,
-    title : "SACO GRIS",
-    img : "https://pepeganga.vteximg.com.br/arquivos/ids/698004-500-625/2M063210-125307384-1.png?v=637808001580470000",
-    category : "shirt",
-    price : 20.0,
-    cant : 4,
-    sizes : ["XS", "S", "M", "L", "XL", "XXL"],
-    colors : ["blue", "red", "black", "gray"],
-  },
-  {
-    id : 4,
-    title : "SACO MULTICOLOR",
-    img : "https://pepeganga.vteximg.com.br/arquivos/ids/720247-500-625/3M708110-125529330-1.png?v=637847897391800000",
-    category : "shirt",
-    price : 15.0,
-    cant : 4,
-    sizes : ["XS", "S", "M", "L", "XL", "XXL"],
-    colors : ["blue", "red", "black", "white"],
-  },
-  {
-    id : 5,
-    title : "SACO AZUL CON DINOSAURIOS",
-    img : "https://pepeganga.vteximg.com.br/arquivos/ids/711413-500-625/2N059210-125532545-1.png?v=637838217494800000",
-    category : "shirt",
-    price : 20.0,
-    cant : 4,
-    sizes : ["XS", "S", "M", "L", "XL", "XXL"],
-    colors : ["blue", "red", "black", "white"],
-  },
-  {
-    id : 6,
-    title : "CAMISETA AZUL AEROPOSTALE",
-    img : "https://aeropostale.vteximg.com.br/arquivos/ids/160205-640-740/11170832_2977_1.png?v=638138920787200000",
-    category : "shirt",
-    price : 10.0,
-    cant : 6,
-    sizes : ["XS", "S", "M", "L", "XL", "XXL"],
-    colors : ["blue", "red", "black", "white"],
-  },
-  {
-    id : 7,
-    title : "CAMISETA AZUL AEROUSA",
-    img : "https://aeropostale.vteximg.com.br/arquivos/ids/160171-1000-1160/11136251_7978_1.png?v=638138180558470000",
-    category : "shirt",
-    price : 10.0,
-    cant : 8,
-    sizes : ["XS", "S", "M", "L", "XL", "XXL"],
-    colors : ["blue", "red", "black", "white"],
-  },
-  {
-    id : 8,
-    title : "CAMISETA AEROPOSTALE AZUL ESTAMPADA",
-    img : "https://aeropostale.vteximg.com.br/arquivos/ids/160271-1000-1160/11149493_2972_1.png?v=638140781259370000",
-    category : "shirt",
-    price : 13.0,
-    cant : 2,
-    sizes : ["XS", "S", "M", "L", "XL", "XXL"],
-    colors : ["blue", "red", "black", "white"],
-  },
-  {
-    id : 9,
-    title : "BUZO NEGRO LOGO JAVA",
-    img : "https://cdn.shopify.com/s/files/1/0537/9483/2552/products/Java_1024x1024.png?v=1614388452",
-    category : "shirt",
-    price : 20.0,
-    cant : 10,
-    sizes : ["XS", "S", "M", "L", "XL", "XXL"],
-    colors : ["blue", "red", "black", "white"],
-  },
-  {
-    id : 10,
-    title : "BUZO ROJO BOREAL",
-    img : "https://creatividadenmovimiento.com/wp-content/uploads/2021/05/foto-producto-chaqueta-2.png",
-    category : "shirt",
-    price : 20.0,
-    cant : 3,
-    sizes : ["XS", "S", "M", "L", "XL", "XXL"],
-    colors : ["blue", "red", "black", "white"],
-  },
-];
-
+  {"id":1,"name":"Camiseta de manga corta con cuello redondo","price":10,"image":"https://res.cloudinary.com/duu1imwxs/image/upload/v1677270464/eCommerce/shirt1_prckre.png","category":"shirt","quantity":5,"description":"Esta camiseta básica presenta un corte regular y un cuello redondo clásico. Es ideal para el uso diario y se puede combinar con una amplia variedad de looks.", sizes : ["XS", "S", "M", "L", "XL", "XXL"],
+    colors : ["blue", "red", "black", "white"],},
+  {"id":2,"name":"Camiseta de manga larga con estampado gráfico","price":15,"image":"https://res.cloudinary.com/duu1imwxs/image/upload/v1677270464/eCommerce/shirt2_av4jld.png","category":"shirt","quantity":3,"description":"Perfecta para un look casual, esta camiseta de manga larga presenta un estampado gráfico llamativo en el pecho. Su ajuste regular y suave tejido de algodón la hacen cómoda y fácil de usar.", sizes : ["XS", "S", "M", "L", "XL", "XXL"],
+    colors : ["blue", "red", "black", "white"],},
+  {"id":3,"name":"Camiseta con detalle de encaje","price":12,"image":"https://res.cloudinary.com/duu1imwxs/image/upload/v1677270464/eCommerce/shirt3_wlm0h3.png","category":"shirt","quantity":2,"description":"Esta camiseta presenta un detalle de encaje en el escote y mangas. Su ajuste regular y tela suave la hacen cómoda y fácil de usar para cualquier ocasión.", sizes : ["XS", "S", "M", "L", "XL", "XXL"],
+    colors : ["blue", "red", "black", "white"],},
+  {"id":4,"name":"Camiseta de tirantes con espalda cruzada","price":8,"image":"https://res.cloudinary.com/duu1imwxs/image/upload/v1677270464/eCommerce/shirt4_cypl6n.png","category":"shirt","quantity":10,"description":"Con un toque de estilo femenino, esta camiseta de tirantes presenta una espalda cruzada con detalle de encaje. El ajuste es regular y la tela suave y cómoda.", sizes : ["XS", "S", "M", "L", "XL", "XXL"],
+    colors : ["blue", "red", "black", "white", "gray"],},
+  {"id":5,"name":"Camiseta con hombros descubiertos","price":12,"image":"https://res.cloudinary.com/duu1imwxs/image/upload/v1677270464/eCommerce/shirt5_cnwq0w.png","category":"shirt","quantity":6,"description":"Con un toque femenino y coqueto, esta camiseta presenta hombros descubiertos y un ajuste regular. Su tela suave y transpirable la hace ideal para los días calurosos.", sizes : ["XS", "S", "M", "L", "XL", "XXL"],
+    colors : ["blue", "red", "black", "white", "gray"],},
+  {"id":6,"name":"Camiseta con cuello alto y manga larga","price":18,"image":"https://res.cloudinary.com/duu1imwxs/image/upload/v1677270465/eCommerce/shirt6_pnwws6.png","category":"shirt","quantity":4,"description":"Esta camiseta de manga larga presenta un cuello alto y ajuste regular. Es ideal para un look elegante y cómodo.", sizes : ["XS", "S", "M", "L", "XL", "XXL"],
+    colors : ["blue", "red", "black", "white", "gray"],},
+  {"id":7,"name":"Camiseta con cuello en V y manga corta","price":9,"image":"https://res.cloudinary.com/duu1imwxs/image/upload/v1677270450/eCommerce/shirt7_ofhlzd.png","category":"shirt","quantity":8,"description":"Esta camiseta clásica presenta un corte regular, cuello en V y mangas cortas. Es fácil de usar y combinar con diferentes looks.", sizes : ["XS", "S", "M", "L", "XL", "XXL"],
+    colors : ["blue", "red", "black", "white", "gray"],},
+  {"id":8,"name":"Hoddie con estampado de leopardo","price":20,"image":"https://res.cloudinary.com/duu1imwxs/image/upload/v1677270465/eCommerce/hoddie4_wvwaiv.png","category":"hoddie","quantity":8,"description":"Este hoddie presenta un estampado de leopardo y está hecho de una mezcla suave de algodón y poliéster. Es ideal para un look casual y cómodo.", sizes : ["XS", "S", "M", "L", "XL", "XXL"],
+    colors : ["blue", "red", "black", "white", "green"],},
+  {"id":9,"name":"Hoddie con cremallera","price":25,"image":"https://res.cloudinary.com/duu1imwxs/image/upload/v1677270465/eCommerce/hoddie3_xboa0e.png","category":"hoddie","quantity":10,"description":"Este hoddie presenta una cremallera frontal y bolsillos laterales. Está hecho de una mezcla de algodón y poliéster para mayor comodidad y durabilidad.", sizes : ["XS", "S", "M", "L", "XL", "XXL"],
+    colors : ["blue", "red", "black", "white", "green"],},
+  {"id":10,"name":"Hoddie con capucha y cordón ajustable","price":30,"image":"https://res.cloudinary.com/duu1imwxs/image/upload/v1677270465/eCommerce/hoddie2_utnolh.png","category":"hoddie","quantity":6,"description":"Este hoddie presenta una capucha con cordón ajustable y un corte holgado para mayor comodidad. Está hecho de una mezcla suave de algodón y poliéster.", sizes : ["XS", "S", "M", "L", "XL", "XXL"],
+    colors : ["blue", "red", "black", "white", "green"],},
+  {"id":11,"name":"Hoddie con estampado de marca","price":35,"image":"https://res.cloudinary.com/duu1imwxs/image/upload/v1677270465/eCommerce/hoddie1_sxv2ce.png","category":"hoddie","quantity":4,"description":"Este hoddie presenta un estampado de marca en la parte delantera y está hecho de una mezcla suave de algodón y poliéster. Es ideal para un look casual y moderno.", sizes : ["XS", "S", "M", "L", "XL", "XXL"],
+    colors : ["blue", "red", "black", "white", "green"],},
+  {"id":12,"name":"Hoddie con cierre de botones","price":40,"image":"https://res.cloudinary.com/duu1imwxs/image/upload/v1677270464/eCommerce/hoddie5_sqnwic.png","category":"hoddie","quantity":3,"description":"Este hoddie presenta un cierre de botones en la parte delantera y bolsillos laterales. Está hecho de una mezcla suave de algodón y poliéster para mayor comodidad y durabilidad.", sizes : ["XS", "S", "M", "L", "XL", "XXL"],
+    colors : ["blue", "red", "black", "white", "green"],},
+  {"id":13,"name":"Hoddie con estampado de camuflaje","price":45,"image":"https://res.cloudinary.com/duu1imwxs/image/upload/v1677270464/eCommerce/hoddie6_i7gdrl.png","category":"hoddie","quantity":7,"description":"Este hoddie presenta un estampado de camuflaje y está hecho de una mezcla suave de algodón y poliéster. Es ideal para un look casual y moderno.", sizes : ["XS", "S", "M", "L", "XL", "XXL"],
+    colors : ["blue", "red", "black", "white", "green"],},
+  {"id":14,"name":"Sweater de punto grueso","price":10,"image":"https://res.cloudinary.com/duu1imwxs/image/upload/v1677270450/eCommerce/sweater1_o8qh0p.png","category":"sweater","quantity":5,"description":"Este sweater de punto grueso es ideal para los días fríos. Está hecho de una mezcla suave de lana y acrílico para mayor comodidad y calidez.", sizes : ["XS", "S", "M", "L", "XL", "XXL"],
+    colors : ["blue", "red", "black", "white"],},
+  {"id":15,"name":"Sweater de cuello alto","price":15,"image":"https://res.cloudinary.com/duu1imwxs/image/upload/v1677270450/eCommerce/sweater2_y7yzqs.png","category":"sweater","quantity":7,"description":"Este sweater de cuello alto está hecho de una mezcla suave de lana y acrílico para mayor comodidad y calidez. Es ideal para un look elegante y cálido.", sizes : ["XS", "S", "M", "L", "XL", "XXL"],
+    colors : ["blue", "red", "black", "white"],},
+  {"id":16,"name":"Sweater de tejido fino","price":20,"image":"https://res.cloudinary.com/duu1imwxs/image/upload/v1677270450/eCommerce/sweater3_nnfctl.png","category":"sweater","quantity":3,"description":"Este sweater de tejido fino es ideal para los días frescos. Está hecho de una mezcla suave de lana y acrílico para mayor comodidad y calidez.", sizes : ["XS", "S", "M", "L", "XL", "XXL"],
+    colors : ["blue", "red", "black", "white"],},
+  {"id":17,"name":"Sweater con estampado de rayas","price":25,"image":"https://res.cloudinary.com/duu1imwxs/image/upload/v1677270450/eCommerce/sweater4_kxcvab.png","category":"sweater","quantity":6,"description":"Este sweater presenta un estampado de rayas en la parte delantera y está hecho de una mezcla suave de lana y acrílico para mayor comodidad y calidez. Es ideal para un look casual y moderno.", sizes : ["XS", "S", "M", "L", "XL", "XXL"],
+    colors : ["blue", "red", "black", "white"],},
+  {"id":18,"name":"Sweater con cuello redondo","price":30,"image":"https://res.cloudinary.com/duu1imwxs/image/upload/v1677270450/eCommerce/sweater5_hj94db.png","category":"sweater","quantity":4,"description":"Este sweater con cuello redondo está hecho de una mezcla suave de lana y acrílico para mayor comodidad y calidez. Es ideal para un look casual y cómodo.", sizes : ["XS", "S", "M", "L", "XL", "XXL"],
+    colors : ["blue", "red", "black", "white"],}];
 
 (()=>{
 // aqui voy obtengo la etiqueda donde voy a agregar la view de mis productos
@@ -112,16 +50,16 @@ let view = ``;
 data.forEach(item=>{
   let card = `<article class="cards">
   <div class="image--container">
-  <img src="${item.img}" alt="" class="img__prod" loading="easy">
+  <img src="${item.image}" alt="" class="img__prod" loading="easy">
   <div class="cards__buttons-container">
-            <button>Agregar al carrito</button><button>detalles</button>
+            <button onclick="addToCart(${item.id})">Agregar al carrito</button><button onclick="showDetails(${item.id})">detalles</button>
           </div>  
   </div>
   <div class="product-props">
-    <h3>${item.title}</h3>
+    <h3>${item.name}</h3>
     <p class="price">$${item.price}</p>
     <p class="category light">${item.category}</p>
-    <p class="stock light">disponibles: ${item.cant}</p>
+    <p class="stock light">disponibles: ${item.quantity}</p>
     <p class="title">Medidas</p>
     <p class="sizes light">`;
 
@@ -138,7 +76,54 @@ data.forEach(item=>{
     }
 
     card += `</div> </div> </article>`;
-  view += card
+  view += card;
 });
 container.innerHTML = view;
-})()
+})();
+
+let cartStatus = document.querySelector('.cart-status');
+// this function find into data for show panel detail
+function showDetails(id){
+  let main = document.querySelector('#main');
+  let product = data.find(item=>{
+    return item.id === id;
+  });
+  let view = `<section class="panelDetails">
+  <article class="panelDetails--card">
+    <img src="${product.image}" alt="">
+    <span class="material-symbols-outlined close_button cursor" onclick="closeDetails()">
+    &#xE5CD;
+    </span>
+    <button onclick="addToCart(${product.id})" class="detail-addToCart material-symbols-outlined cursor"><span class="material-symbols-outlined icons">&#xF1CC;</span> Agregar al carrito</button>
+    <div class="details--product">
+      <h3>
+       ${product.name}
+      </h3>
+      <p class="price">$${product.price}</p>
+      <p class="title">
+        ${product.description}
+      </p>
+      <p class="category">${product.category}</p>
+      <p class="stock">disponibles: ${product.quantity}</p>
+    </div>
+  </article>
+</section>`;
+main.innerHTML += view;
+}
+// this function delete details panel 
+function closeDetails(){
+document.querySelector('.panelDetails').remove();
+}
+// this function save data in localestorage when this called
+function localSave(){
+  localStorage.setItem( "cart", JSON.stringify(cart) );
+}
+function addToCart(id){
+  let productIndex = data.findIndex(item => {
+    return item.id === id;
+  });
+  cart.push( data[productIndex] );
+  cartStatus.innerHTML = cart.length;
+  localSave();
+}
+let cart = [];

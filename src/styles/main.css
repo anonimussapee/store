@@ -1,4 +1,6 @@
-*{
+*, 
+*::after,
+*::before{
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -16,12 +18,18 @@
   --secondary : #000000;
   --primary-light : #fff;
   --secondary-light : #5c5c5c;
+  --primary-background-details : #5c5c5c51;
+  --font-cart-status : 1rem;
+  --font-small : 1.2rem;
   --font : 1.4rem;
   --font-big: 2.2rem;
+  --font-extra-big : 4.4rem ;
   --font-medium: 1.8rem;
   --font-weigth-soft:500;
   --font-weigth-medium : 600 ;
   --header-heigth : 10vh;
+  --cart-status-color:red;
+  
 }
 /* variables in darktheme */
 .dark-mode{
@@ -75,10 +83,82 @@ header nav ul .icons{
   font-size: var(--font);
   font-weight: var(--font-weigth-medium);
   text-align: center;
+  position: relative;
+}
+/* cart status */
+header nav ul .icons .cart-status{
+  position: absolute;
+  top: 0;
+  right: -6px;
+  background-color: var(--cart-status-color);
+  color: white;
+  font-size: var(--font-cart-status);
+  font-family: sans-serif;
+  font-weight: var(--font-weigth-medium);
+  padding: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  text-align: center;
+  border-radius: 10px;
 }
 /* on mouse position cursor transform in hand touch */
 .cursor{
   cursor: pointer;
+}
+/* size of slidebar hidden */
+ul.navigation{
+  position: fixed;
+  top:var(--header-heigth);
+  bottom: 0;
+  right: -250px;
+  width: 250px;
+  background-color: var(--primary-light);
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+  font-size: var(--font);
+  font-weight: var(--font-weigth-medium);
+  transition: all .5s;
+}
+/* navbar slidebar show*/
+ul.navigation.show{
+  right: 0;
+  transition: all .5s;
+}
+/* navbar close background hidden */
+.nav-close-out{
+  position: fixed;
+  top:var(--header-heigth);
+  bottom: 0;
+  left: 0;
+  width: 0;
+  background-color: var(--primary-background-details);
+  transition: all .5s;
+}
+/* navbar close background show */
+.nav-close-out.show{
+  right: 250px;
+  width: 90%;
+  transition: all .5s;
+}
+
+.nav-slide-cart{
+  position: fixed;
+  top: var(--header-heigth);
+  bottom: 0;
+  right: -250px;
+  width: 250px;
+  background-color: var(--primary-light);
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 10px;
+  padding: 20px;
 }
 /* size of the main, display and padding top for resolve position fixed of navbar */
 main{
@@ -100,7 +180,6 @@ main h1{
 main .main--products-container{
   width: 90%;
   min-width: 288px;
-  max-width: 1000px;
   margin: 0 auto;
   gap: 20px;
   display: flex;
@@ -153,6 +232,7 @@ main .main--products-container{
 .cards:hover .cards__buttons-container{
   opacity: 1;
   transition: all .3s;
+  z-index: 0;
 }
 /* details up to when hover */
 .cards:hover .product-props{
@@ -182,6 +262,7 @@ main .main--products-container{
   opacity: 0;
   transition: all .3s;
   top: 45px;
+  z-index: -1;
 }
 /* size of cards buttons */
 .cards__buttons-container button{
@@ -195,24 +276,28 @@ main .main--products-container{
   font-weight: var(--font-weigth-medium);
   border-style: none;
 }
+/* size and color of the h3 into cards */
 .product-props h3{
   width: 70%;
   font-weight: 400;
   font-size: var(--font-medium);
   color: var(--secondary);
 }
+/* size, color and weight of price */
 .product-props .price{
   width: 20%;
   font-size: var(--font-big);
   font-weight:var(--font-weigth-soft);
   color: var(--secondary);
 }
+/* size, color and weight of category*/
 .product-props .category{
   width: 40%;  
   font-size: var(--font);
   color: var(--secondary-light);
   font-weight: 500;
 }
+/* size, color and weight of stock*/
 .product-props .stock{
   width: 50%;  
   text-align: end;
@@ -220,29 +305,33 @@ main .main--products-container{
   color: var(--secondary-light);
   font-weight: 400;
 }
+/* size, color and weight of titles */
 .product-props .title{
   width: 100%;  
   font-size: var(--font);
   color: var(--secondary);
   font-weight: var(--font-weigth-soft);
 }
+/* size, color and weight of clothes sizes*/
 .product-props .sizes{
   width: 100%;  
   font-size: var(--font);
   color: var(--secondary-light);
   font-weight: var(--font-weigth-soft);
 }
+/* size of colors container*/
 .product-props .colors-container{
   width: 100%;  
   display: flex;
   gap: 10px;
 }
+/* sizes of color cubes */
 .product-props .cube-color{
   width: 2rem;  
   height: 2rem;
   border: 1px solid var(--secondary);
 }
-
+/* color of cubes */
 .red{
   background-color: red;
 }
@@ -267,4 +356,108 @@ main .main--products-container{
 .white{
   background-color: white;
 }
+/* finish color of the cubes  and start panel of details*/
+.panelDetails{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  background-color: var(--primary-background-details);
+}
+ /* size of card details */
+.panelDetails .panelDetails--card{
+  width: 90%;
+  height: 100vh;
+  min-width: 250px;
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: var(--primary);
+  position: relative;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  padding: 10px;
+}
+/* size of img of card detail */
+.panelDetails .panelDetails--card img{
+  width: 100%;
+  height: 50vh;
+  position: relative;
+}
+/* position close panel detail button */
+.panelDetails .panelDetails--card .close_button{
+  position: absolute;
+  background-color: var(--secondary-light);
+  color: var(--primary-light);
+  font-size: var(--font-extra-big);
+  font-weight: var(--font-weigth-medium);
+  top: 0;
+  right: 0;
+  padding: 2px;
+  border-radius: 0 0 0 10px;
+}
+/* hover close button panel */
+.panelDetails .panelDetails--card .close_button:hover,
+.panelDetails .panelDetails--card .detail-addToCart:hover{
+  background-color: var(--secondary);
+}
+/* size add to cart into card detail  */
+.panelDetails .panelDetails--card .detail-addToCart{
+  width: auto;
+  height: auto;
+  align-self: self-start;
+  padding: 3px;
+  border-radius: 10px;
+  font-size: var(--font-small);
+  display: flex;
+  align-items: center;
+  background-color: var(--secondary-light);
+  color: var(--primary-light);
+  font-weight: var(--font-weigth-medium);
+}
+/* sizes of details product  */
+.panelDetails .panelDetails--card .details--product{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 
+}
+/* sizes of title into destails */
+.panelDetails .panelDetails--card .details--product h3{
+  font-size: var(--font-big);
+  font-weight: var(--font-weigth-soft);
+  width: 75%;
+  color: var(--secondary);
+}
+/* sizes of price into destails */
+.panelDetails .panelDetails--card .details--product .price{
+  font-size: var(--font-big);
+  font-weight: var(--font-weigth-medium);
+  width: 20%;
+  color: var(--secondary);
+  text-align: end;
+}
+/* sizes of title h3 into destails */
+.panelDetails .panelDetails--card .details--product .title{
+  font-size: var(--font);
+  font-weight: var(--font-weigth-soft);
+  letter-spacing: 1px;
+}
+/* sizes of category into destails */
+.panelDetails .panelDetails--card .details--product .category{
+  font-size: var(--font);
+  font-weight: var(--font-weigth-medium);
+  color: var(--secondary-light);
+  width: 45%;
+}
+/* sizes of stock into destails */
+.panelDetails .panelDetails--card .details--product .stock{
+  font-size: var(--font);
+  font-weight: var(--font-weigth-medium);
+  color: var(--secondary-light);
+  width: 45%;
+}
