@@ -58,22 +58,57 @@
         <li class="options"><a href="">Contactanos</a></li>
       </ul>
       <div class="nav-slide-cart">
-        <h3>Tu compra</h3>
-        <span class="material-symbols-outlined">&#xE5CD;</span>
-        <article></article>
-        <div class="code-desc"><input type="text" class="cupon"><button>aplicar</button></div>
+        <div class="headercart">
+          <h3>Tu compra</h3>
+          <span class="material-symbols-outlined close_cart  cursor">&#xE5CD;</span>
+        </div>
+        <div class="products-list">
+          <article>
+            <div class="img-container ">
+              <img src="../src/assets/images/main_logo.png" alt="">
+              <p class="price">$15</p>
+            </div>
+            <div class="details-of-product">
+              <p class="title">
+                camiseta loca hsabdhsbd ashdhsa jsbdj asfsadg safADS
+              </p>
+              <p class="stock">3 disponibles</p>
+              <div class="cant">
+                <button class="reduce-cant icon material-symbols-outlined">&#xE15B;</button>
+                <input type="number" value="1">
+                <button class="add-cant icon material-symbols-outlined">&#xE145;</button>
+              </div>
+              
+            </div>
+            <div class="trash-and-total">
+              <span class="material-symbols-outlined trash-product">
+                &#xE872;
+              </span>
+            <p class="price total">$30$</p>
+            </div>
+          </article>
+        </div> 
+        <div class="code-desc">
+          <input type="text" class="cupon" placeholder="ab45F4R"><button>aplicar</button>
+        </div>
         <div class="total">
-          <p class="title"></p>
-          <p class="title"></p>
-          <p class="title"></p>
-          <p class="title"></p>
-          <p class="title"></p>
-          <p class="title"></p>
-          <p class="title"></p>
-          <p class="title"></p>
+          <p class="title">SUBTOTAL</p>
+          <p class="sub-title">$30.00</p>
+          <p class="title">DESCUENTO</p>
+          <p class="sub-title">$0.00</p>
+          <p class="title">IVA 12%</p>
+          <p class="sub-title">$4.80</p>
+          <p class="title">TOTAL</p>
+          <p class="sub-title">$34.80</p>
         </div>
         <div class="nav-cart-buttons-container">
-          <button></button><button></button>
+          <button class="clear-cart">
+            <span class="material-symbols-outlined icons trash-product">
+              &#xE872; 
+            </span><p>Vaciar</p>
+          </button><button> <span class="material-symbols-outlined icons pay-card-product">
+            &#xE870; 
+          </span><p>Comprar</p></button>
         </div>
       </div>
       
@@ -82,6 +117,7 @@
   <main id="main">
     <h1>Nuestros productos</h1>
     <section class="main--products-container">
+      
     </section>
   </main>
 </body>
