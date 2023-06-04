@@ -1,10 +1,11 @@
+//aqui pedimos al dom los elementos guardados .
 document.addEventListener('DOMContentLoaded', ()=>{
   cart = JSON.parse(localStorage.getItem('cart')) || [];
   cartStatus.innerHTML = cart.length;
 });
+// la data de los productos
 let data = [
-  {"id":1,"name":"Camiseta de manga corta con cuello redondo","price":10,"image":"https://res.cloudinary.com/duu1imwxs/image/upload/v1677270464/eCommerce/shirt1_prckre.png","category":"shirt","quantity":5,"description":"Esta camiseta básica presenta un corte regular y un cuello redondo clásico. Es ideal para el uso diario y se puede combinar con una amplia variedad de looks.", sizes : ["XS", "S", "M", "L", "XL", "XXL"],
-    colors : ["blue", "red", "black", "white"],},
+  {"id":1,"name":"Camiseta de manga corta con cuello redondo","price":10,"image":"https://res.cloudinary.com/duu1imwxs/image/upload/v1677270464/eCommerce/shirt1_prckre.png","category":"shirt","quantity":5,"description":"Esta camiseta básica presenta un corte regular y un cuello redondo clásico. Es ideal para el uso diario y se puede combinar con una amplia variedad de looks.", sizes : ["XS", "S", "M", "L", "XL", "XXL"],colors : ["blue", "red", "black", "white"],},
   {"id":2,"name":"Camiseta de manga larga con estampado gráfico","price":15,"image":"https://res.cloudinary.com/duu1imwxs/image/upload/v1677270464/eCommerce/shirt2_av4jld.png","category":"shirt","quantity":3,"description":"Perfecta para un look casual, esta camiseta de manga larga presenta un estampado gráfico llamativo en el pecho. Su ajuste regular y suave tejido de algodón la hacen cómoda y fácil de usar.", sizes : ["XS", "S", "M", "L", "XL", "XXL"],
     colors : ["blue", "red", "black", "white"],},
   {"id":3,"name":"Camiseta con detalle de encaje","price":12,"image":"https://res.cloudinary.com/duu1imwxs/image/upload/v1677270464/eCommerce/shirt3_wlm0h3.png","category":"shirt","quantity":2,"description":"Esta camiseta presenta un detalle de encaje en el escote y mangas. Su ajuste regular y tela suave la hacen cómoda y fácil de usar para cualquier ocasión.", sizes : ["XS", "S", "M", "L", "XL", "XXL"],
@@ -35,11 +36,10 @@ let data = [
     colors : ["blue", "red", "black", "white"],},
   {"id":16,"name":"Sweater de tejido fino","price":20,"image":"https://res.cloudinary.com/duu1imwxs/image/upload/v1677270450/eCommerce/sweater3_nnfctl.png","category":"sweater","quantity":3,"description":"Este sweater de tejido fino es ideal para los días frescos. Está hecho de una mezcla suave de lana y acrílico para mayor comodidad y calidez.", sizes : ["XS", "S", "M", "L", "XL", "XXL"],
     colors : ["blue", "red", "black", "white"],},
-  {"id":17,"name":"Sweater con estampado de rayas","price":25,"image":"https://res.cloudinary.com/duu1imwxs/image/upload/v1677270450/eCommerce/sweater4_kxcvab.png","category":"sweater","quantity":6,"description":"Este sweater presenta un estampado de rayas en la parte delantera y está hecho de una mezcla suave de lana y acrílico para mayor comodidad y calidez. Es ideal para un look casual y moderno.", sizes : ["XS", "S", "M", "L", "XL", "XXL"],
-    colors : ["blue", "red", "black", "white"],},
-  {"id":18,"name":"Sweater con cuello redondo","price":30,"image":"https://res.cloudinary.com/duu1imwxs/image/upload/v1677270450/eCommerce/sweater5_hj94db.png","category":"sweater","quantity":4,"description":"Este sweater con cuello redondo está hecho de una mezcla suave de lana y acrílico para mayor comodidad y calidez. Es ideal para un look casual y cómodo.", sizes : ["XS", "S", "M", "L", "XL", "XXL"],
-    colors : ["blue", "red", "black", "white"],}];
-
+  {"id":17,"name":"Sweater con estampado de rayas","price":25,"image":"https://res.cloudinary.com/duu1imwxs/image/upload/v1677270450/eCommerce/sweater4_kxcvab.png","category":"sweater","quantity":6,"description":"Este sweater presenta un estampado de rayas en la parte delantera y está hecho de una mezcla suave de lana y acrílico para mayor comodidad y calidez. Es ideal para un look casual y moderno.", sizes : ["XS", "S", "M", "L", "XL", "XXL"], colors : ["blue", "red", "black", "white"],},
+  {"id":18,"name":"Sweater con cuello redondo","price":30,"image":"https://res.cloudinary.com/duu1imwxs/image/upload/v1677270450/eCommerce/sweater5_hj94db.png","category":"sweater","quantity":4,"description":"Este sweater con cuello redondo está hecho de una mezcla suave de lana y acrílico para mayor comodidad y calidez. Es ideal para un look casual y cómodo.", sizes : ["XS", "S", "M", "L", "XL", "XXL"], colors : ["blue", "red", "black", "white"],}
+];
+//  esta logica es para mostrar los productos de la api
 (()=>{
 // aqui voy obtengo la etiqueda donde voy a agregar la view de mis productos
 
@@ -80,9 +80,10 @@ data.forEach(item=>{
 });
 container.innerHTML = view;
 })();
+// hasta aqui termina la implementacion de los datos de la api en cards de productos
 
 let cartStatus = document.querySelector('.cart-status');
-// this function find into data for show panel detail
+// this function find into of the data to show in panel detail
 function showDetails(id){
   let main = document.querySelector('#main');
   let product = data.find(item=>{
@@ -109,10 +110,6 @@ function showDetails(id){
   </article>
 </section>`;
 main.innerHTML += view;
-}
-// this function delete details panel 
-function closeDetails(){
-document.querySelector('.panelDetails').remove();
 }
 // this function save data in localestorage when this called
 function localSave(){
