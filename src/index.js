@@ -139,6 +139,11 @@ function addToCart(id){
   let productIndex = data.findIndex(item => {
     return item.id === id;
   });
+  
+  // verifi if exist stock of product
+  if(data[productIndex].quantity === 0){
+    noHaveStock(productIndex);
+  }
   // when the product with this id exist in cart, the product will added 1 more in cant
   if(cart[data[productIndex].id]){
 
@@ -264,6 +269,8 @@ function addMore(id){
   cart[id].cant += 1;
   loadCartList();
   localSave();
+  }else{
+    noHaveStock(id);
   }
   
 }
@@ -296,6 +303,37 @@ function buyNow(){
   });
 }
 
+// function to show panel to notificate inexistence in stock
+function noHaveStock(id){
 
+  let main = document.querySelector('#main');
 
+  let view = `<section class="panelDetails" >
+  <div class="panelDetailsClose" onclick="closeDetails()"></div>
+  <article class="panelDetails--card">
+    <img src="${data[id].image}" alt="">
+    <span class="material-symbols-outlined close_button cursor" onclick="closeDetails()">
+    &#xE5CD;
+    </span>
+    <p class="detail-addToCart cursor"><span class="material-symbols-outlined icons">&#xF1CC;</span> Notificame cuando haya en stock</p>
+    <div class="details--product">
+      <h3>
+       ${data[id].name}
+      </h3>
+      <p class="title">
+        Lo siento ya no hay stock de este producto.
+      </p>
+      <p class="title">
+        sigue participando.
+      </p>
+      <span class="material-symbols-outlined">
+        &#xE7F2;
+      </span>
+    </div>
+  </article>
+</section>
+  `;
 
+  main.innerHTML += view;
+
+}

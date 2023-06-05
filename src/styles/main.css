@@ -633,7 +633,7 @@ main .main--products-container{
   align-self: self-start;
   padding: 3px;
   border-radius: 10px;
-  font-size: var(--font-small);
+  font-size: var(--font);
   display: flex;
   align-items: center;
   background-color: var(--secondary-light);
