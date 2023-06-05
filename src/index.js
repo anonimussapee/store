@@ -138,7 +138,10 @@ function addToCart(id){
   // when the product with this id exist in cart, the product will added 1 more in cant
   if(cart[data[productIndex].id]){
 
-    cart[data[productIndex].id].cant += 1;
+    if(cart[data[productIndex].id].cant < cart[data[productIndex].id].quantity ){
+
+      cart[data[productIndex].id].cant += 1;
+    }
 
   }else{
     // in this variable is stored the product with new values
@@ -175,9 +178,9 @@ function loadCartList(){
       </p>
       <p class="stock">${item.quantity - item.cant} disponibles</p>
       <div class="cant">
-        <button class="reduce-cant icon material-symbols-outlined">&#xE15B;</button>
+        <button class="reduce-cant icon material-symbols-outlined" onclick="subtractOne(${item.id})">&#xE15B;</button>
         <span for="productCant">${item.cant} </span>
-        <button class="add-cant icon material-symbols-outlined">&#xE145;</button>
+        <button class="add-cant icon material-symbols-outlined" onclick="addMore(${item.id}) ">&#xE145;</button>
       </div>
       
     </div>
@@ -249,3 +252,24 @@ function deleteProduct(id){
   loadCartList();
   localSave();
 }
+
+// functions for buttons in cardproductslist buttons to will add more quantity or subtract one
+
+function addMore(id){
+  if(cart[id].cant <  cart[id].quantity){
+  cart[id].cant += 1;
+  loadCartList();
+  localSave();
+  }
+  
+}
+function subtractOne(id){
+  if(cart[id].cant > 0){
+    cart[id].cant -= 1;
+    loadCartList();
+    localSave();
+  }
+  
+}
+
+
