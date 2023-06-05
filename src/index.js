@@ -1,7 +1,7 @@
 //aqui pedimos al dom los elementos guardados .
 document.addEventListener('DOMContentLoaded', ()=>{
-  cart = JSON.parse(localStorage.getItem('cart')) || [];
-  cartStatus.innerHTML = cart.length;
+  cart = JSON.parse(localStorage.getItem('cart')) || {};
+  loadCartList();
 });
 // la data de los productos
 let data = [
@@ -40,50 +40,56 @@ let data = [
   {"id":18,"name":"Sweater con cuello redondo","price":30,"image":"https://res.cloudinary.com/duu1imwxs/image/upload/v1677270450/eCommerce/sweater5_hj94db.png","category":"sweater","quantity":4,"description":"Este sweater con cuello redondo está hecho de una mezcla suave de lana y acrílico para mayor comodidad y calidez. Es ideal para un look casual y cómodo.", sizes : ["XS", "S", "M", "L", "XL", "XXL"], colors : ["blue", "red", "black", "white"],}
 ];
 //  esta logica es para mostrar los productos de la api
-(()=>{
-// aqui voy obtengo la etiqueda donde voy a agregar la view de mis productos
-
-let container = document.querySelector('.main--products-container');
-
-//  aqui la logica para hacer el view del los products
-let view = ``;
-data.forEach(item=>{
-  let card = `<article class="cards">
-  <div class="image--container">
-  <img src="${item.image}" alt="" class="img__prod" loading="easy">
-  <div class="cards__buttons-container">
-            <button onclick="addToCart(${item.id})">Agregar al carrito</button><button onclick="showDetails(${item.id})">detalles</button>
-          </div>  
-  </div>
-  <div class="product-props">
-    <h3>${item.name}</h3>
-    <p class="price">$${item.price}</p>
-    <p class="category light">${item.category}</p>
-    <p class="stock light">disponibles: ${item.quantity}</p>
-    <p class="title">Medidas</p>
-    <p class="sizes light">`;
-
-    for (const size of item.sizes) {
-       card +=`<span >${size}, </span>`;
+function showProducts(){
+  // aqui voy obtengo la etiqueda donde voy a agregar la view de mis productos
+  
+  let container = document.querySelector('.main--products-container');
+  
+  //  aqui la logica para hacer el view del los products
+  let view = ``;
+  data.forEach(item=>{
+    let card = `<article class="cards">
+    <div class="image--container">
+    <img src="${item.image}" alt="" class="img__prod" loading="easy">
+    <div class="cards__buttons-container">
+              <button onclick="addToCart(${item.id})">Agregar al carrito</button><button onclick="showDetails(${item.id})">detalles</button>
+            </div>  
+    </div>
+    <div class="product-props">
+      <h3>${item.name}</h3>
+      <p class="price">$${item.price}</p>
+      <p class="category light">${item.category}</p>
+      <p class="stock light">disponibles: ${item.quantity}</p>
+      <p class="title">Medidas</p>
+      <p class="sizes light">`;
+  
+      for (const size of item.sizes) {
+         card +=`<span >${size}, </span>`;
+        }
+  
+      card += `</p>
+      <p class="title">Colores</p>
+      <div class="colors-container">`;
+  
+      for (const color of item.colors) {
+        card += `<span class="cube-color ${color}"></span>`
       }
-
-    card += `</p>
-    <p class="title">Colores</p>
-    <div class="colors-container">`;
-
-    for (const color of item.colors) {
-      card += `<span class="cube-color ${color}"></span>`
-    }
-
-    card += `</div> </div> </article>`;
-  view += card;
-});
-container.innerHTML = view;
-})();
+  
+      card += `</div> </div> </article>`;
+    view += card;
+  });
+  container.innerHTML = view;
+  }
+showProducts();
 // hasta aqui termina la implementacion de los datos de la api en cards de productos
 
+//in this variable i saved the tag to show cart status
 let cartStatus = document.querySelector('.cart-status');
-// this function find into of the data to show in panel detail
+
+//in this variable i saved the tag to show cart with product list
+let productsListRef = document.querySelector('.products-list');
+
+// this function find product in the data to show in panel detail
 function showDetails(id){
   let main = document.querySelector('#main');
   let product = data.find(item=>{
@@ -111,16 +117,71 @@ function showDetails(id){
 </section>`;
 main.innerHTML += view;
 }
+
 // this function save data in localestorage when this called
 function localSave(){
   localStorage.setItem( "cart", JSON.stringify(cart) );
 }
+
+// this function add products on cart
 function addToCart(id){
+  // this variable contain index fo product in variable data
   let productIndex = data.findIndex(item => {
     return item.id === id;
   });
-  cart.push( data[productIndex] );
-  cartStatus.innerHTML = cart.length;
+  // when the product with this id exist in cart, the product will enter 
+  if(cart[data[productIndex]]){
+
+    cart[data[productIndex]].cant += 1;
+
+  }else{
+    // in this variable is stored the product with new values
+    let newProductStructured ={cant : 1, ...data[productIndex]};
+    // product structured is going to push into cart
+    cart[data[productIndex]] = newProductStructured;
+  }
+  
+  loadCartList();
   localSave();
 }
-let cart = [];
+
+// in this object will store the products
+let cart = {};
+
+// this function was used to show cart list in cart slider and show cart stuatus
+function loadCartList(){
+  let cartQuantity = 0;
+  let view = ``;
+  let cartInArray = Object.values(cart);
+  for (const item of cartInArray) {
+    cartQuantity += item.cant;
+    view += `  <article>
+    <div class="img-container ">
+      <img src="${item.image}" alt="${item.name}">
+      <p class="price">$${item.price}</p>
+    </div>
+    <div class="details-of-product">
+      <p class="title">
+        ${item.name}
+      </p>
+      <p class="stock">${item.quantity - item.cant} disponibles</p>
+      <div class="cant">
+        <button class="reduce-cant icon material-symbols-outlined">&#xE15B;</button>
+        <span for="productCant">${item.cant} </span>
+        <button class="add-cant icon material-symbols-outlined">&#xE145;</button>
+      </div>
+      
+    </div>
+    <div class="trash-and-total">
+      <span class="material-symbols-outlined trash-product">
+        &#xE872;
+      </span>
+    <p class="price total">${item.cant * item.price}$</p>
+    </div>
+  </article>`
+
+  }
+  // here will show cart status
+  cartStatus.innerHTML = cartQuantity;
+  productsListRef.innerHTML = view;
+}

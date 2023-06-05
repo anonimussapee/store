@@ -275,12 +275,14 @@ ul.navigation.show{
 }
 /* size of input choose cant into cartlist articles */
 .products-list .details-of-product .icon,
-.products-list .details-of-product input[type="number"] {
-  width: 30px;
+.products-list .details-of-product span {
+  width: 20px;
   height: 20px;
   border-style: none;
   display: flex;
   align-items: center;
+  justify-content: center;
+  font-size: var(--font);
 }
 /* position trash icon  */
 .products-list .trash-and-total{
