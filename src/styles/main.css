@@ -412,6 +412,21 @@ main .main--products-container{
   position: absolute;
   z-index: -1;
 }
+/* style for tag product sold out */
+.sold-out{
+  width: 100px;
+  height: 40px;
+  font-size: var(--font-big);
+  color: var(--primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 0 10px 0;
+  background: linear-gradient(180deg, rgba(232,4,4,1) 0%, rgba(5,31,61,1) 100%);
+  position: absolute;
+  top: 0px;
+  z-index: 2;
+}
 /* size of the images into cards */
 .cards img{
   width:100% ;

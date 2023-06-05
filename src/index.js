@@ -51,11 +51,14 @@ function showProducts(){
   let view = ``;
   data.forEach(item=>{
     let card = `<article class="cards">
-    <div class="image--container">
-    <img src="${item.image}" alt="" class="img__prod" loading="easy">
+    <div class="image--container">`
+    if(item.quantity === 0){
+      card += `<span class="sold-out">Agotado</span>`;
+    }
+    card += `<img src="${item.image}" alt="" class="img__prod" loading="easy">
     <div class="cards__buttons-container">
-              <button onclick="addToCart(${item.id})" class="cursor">Agregar al carrito</button><button onclick="showDetails(${item.id})" class="cursor">detalles</button>
-            </div>  
+      <button onclick="addToCart(${item.id})" class="cursor">Agregar al carrito</button><button onclick="showDetails(${item.id})" class="cursor">detalles</button>
+    </div>  
     </div>
     <div class="product-props">
       <h3>${item.name}</h3>
