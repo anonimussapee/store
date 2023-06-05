@@ -143,8 +143,8 @@ function addToCart(id){
   // verifi if exist stock of product
   if(data[productIndex].quantity === 0){
     noHaveStock(productIndex);
-  }
-  // when the product with this id exist in cart, the product will added 1 more in cant
+  }else{
+    // when the product with this id exist in cart, the product will added 1 more in cant
   if(cart[data[productIndex].id]){
 
     if(cart[data[productIndex].id].cant < cart[data[productIndex].id].quantity ){
@@ -158,6 +158,8 @@ function addToCart(id){
     // product structured is going to push into cart
     cart[data[productIndex].id] = newProductStructured;
   }
+  }
+  
   
   loadCartList();
   localSave();
@@ -326,7 +328,7 @@ function noHaveStock(id){
       <p class="title">
         sigue participando.
       </p>
-      <span class="material-symbols-outlined">
+      <span class="material-symbols-outlined ">
         &#xE7F2;
       </span>
     </div>

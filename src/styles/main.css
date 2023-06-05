@@ -658,7 +658,7 @@ main .main--products-container{
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-
+  color:var(--secondary) ;
 }
 /* sizes of title into destails */
 .panelDetails .panelDetails--card .details--product h3{
