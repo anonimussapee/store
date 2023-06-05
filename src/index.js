@@ -130,15 +130,16 @@ function addToCart(id){
     return item.id === id;
   });
   // when the product with this id exist in cart, the product will enter 
-  if(cart[data[productIndex]]){
+  console.log(productIndex);
+  if(cart[data[productIndex].id]){
 
-    cart[data[productIndex]].cant += 1;
+    cart[data[productIndex].id].cant += 1;
 
   }else{
     // in this variable is stored the product with new values
     let newProductStructured ={cant : 1, ...data[productIndex]};
     // product structured is going to push into cart
-    cart[data[productIndex]] = newProductStructured;
+    cart[data[productIndex].id] = newProductStructured;
   }
   
   loadCartList();
