@@ -2,6 +2,8 @@
 document.addEventListener('DOMContentLoaded', ()=>{
   cart = JSON.parse(localStorage.getItem('cart')) || {};
   loadCartList();
+  data = JSON.parse(localStorage.getItem('dataNew')) || data;
+  showProducts();
 });
 // la data de los productos
 let data = [
@@ -80,7 +82,6 @@ function showProducts(){
   });
   container.innerHTML = view;
   }
-showProducts();
 // hasta aqui termina la implementacion de los datos de la api en cards de productos
 
 //in this variable i saved the tag to show cart status
@@ -263,6 +264,7 @@ function addMore(id){
   }
   
 }
+
 function subtractOne(id){
   if(cart[id].cant > 0){
     cart[id].cant -= 1;
@@ -271,5 +273,26 @@ function subtractOne(id){
   }
   
 }
+
+// function to buy products
+
+function buyNow(){
+
+  let cartInArray = Object.values(cart);
+
+  cartInArray.forEach(item => {
+    for (const dataProd of data) {
+      if(item.id === dataProd.id){
+        dataProd.quantity -= item.cant;
+      }
+    }
+  showProducts();
+  clearCart();
+  localSave();
+  localStorage.setItem( "dataNew", JSON.stringify(data) );
+  });
+}
+
+
 
 
