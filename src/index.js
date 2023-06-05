@@ -89,6 +89,9 @@ let cartStatus = document.querySelector('.cart-status');
 //in this variable i saved the tag to show cart with product list
 let productsListRef = document.querySelector('.products-list');
 
+//in this variable i saved the tag to show data to pay
+let totalRef= document.querySelector('.total');
+
 // this function find product in the data to show in panel detail
 function showDetails(id){
   let main = document.querySelector('#main');
@@ -129,8 +132,7 @@ function addToCart(id){
   let productIndex = data.findIndex(item => {
     return item.id === id;
   });
-  // when the product with this id exist in cart, the product will enter 
-  console.log(productIndex);
+  // when the product with this id exist in cart, the product will added 1 more in cant
   if(cart[data[productIndex].id]){
 
     cart[data[productIndex].id].cant += 1;
@@ -152,8 +154,11 @@ let cart = {};
 // this function was used to show cart list in cart slider and show cart stuatus
 function loadCartList(){
   let cartQuantity = 0;
+
   let view = ``;
+
   let cartInArray = Object.values(cart);
+
   for (const item of cartInArray) {
     cartQuantity += item.cant;
     view += `  <article>
@@ -184,5 +189,42 @@ function loadCartList(){
   }
   // here will show cart status
   cartStatus.innerHTML = cartQuantity;
+
   productsListRef.innerHTML = view;
+
+  payTotal(cartInArray);
+}
+
+// function to calculate total to pay
+
+function payTotal(dataCart){
+
+  let subtotal = 0;
+  
+  let cupon = 0;  
+
+  let iva = 0;
+ 
+  let total = 0;
+
+  dataCart.forEach(item => {
+
+    subtotal += item.cant * item.price; 
+
+  });
+
+  iva = subtotal * 0.12;
+
+  total = (iva + subtotal) - cupon;
+
+  let view = `<p class="title">SUBTOTAL</p>
+  <p class="sub-title">$${subtotal.toFixed(2)}</p>
+  <p class="title">DESCUENTO</p>
+  <p class="sub-title">$${cupon.toFixed(2)}</p>
+  <p class="title">IVA 12%</p>
+  <p class="sub-title">$${iva.toFixed(2)}</p>
+  <p class="title">TOTAL</p>
+  <p class="sub-title">$${total.toFixed(2)}</p>`;
+
+  totalRef.innerHTML = view;
 }
