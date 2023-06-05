@@ -189,11 +189,13 @@ ul.navigation.show{
   color: white;
   
 }
+body button:hover{
+  background-color: var(--secondary);
+  color: var(--primary-light);
+}
 /* close cart icon in a hover */
 .headercart .close_cart:hover,
-.products-list .details-of-product .icon:hover,
-.code-desc button:hover,
-.nav-cart-buttons-container button:hover{
+.products-list .details-of-product .icon:hover{
   background-color: var(--secondary);
   color: var(--primary-light);
 }
@@ -442,7 +444,7 @@ main .main--products-container{
   transition: all .3s;
   width: 100%;
   height: auto;
-  gap: 10px;
+  gap: 9px;
   padding: 24px;
   display: flex;
   flex-wrap: wrap;
@@ -562,6 +564,14 @@ main .main--products-container{
   right: 0;
   bottom: 0;
   z-index: 2;
+  background-color: var(--primary-background-details);
+}
+.panelDetailsClose{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: var(--primary-background-details);
 }
  /* size of card details */

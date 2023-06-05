@@ -52,7 +52,7 @@ function showProducts(){
     <div class="image--container">
     <img src="${item.image}" alt="" class="img__prod" loading="easy">
     <div class="cards__buttons-container">
-              <button onclick="addToCart(${item.id})">Agregar al carrito</button><button onclick="showDetails(${item.id})">detalles</button>
+              <button onclick="addToCart(${item.id})" class="cursor">Agregar al carrito</button><button onclick="showDetails(${item.id})" class="cursor">detalles</button>
             </div>  
     </div>
     <div class="product-props">
@@ -98,7 +98,10 @@ function showDetails(id){
   let product = data.find(item=>{
     return item.id === id;
   });
-  let view = `<section class="panelDetails">
+  let view = `
+  
+  <section class="panelDetails" >
+  <div class="panelDetailsClose" onclick="closeDetails()"></div>
   <article class="panelDetails--card">
     <img src="${product.image}" alt="">
     <span class="material-symbols-outlined close_button cursor" onclick="closeDetails()">
@@ -179,7 +182,7 @@ function loadCartList(){
       
     </div>
     <div class="trash-and-total">
-      <span class="material-symbols-outlined trash-product">
+      <span class="material-symbols-outlined trash-product cursor" onclick="deleteProduct(${item.id})">
         &#xE872;
       </span>
     <p class="price total">${item.cant * item.price}$</p>
@@ -227,4 +230,22 @@ function payTotal(dataCart){
   <p class="sub-title">$${total.toFixed(2)}</p>`;
 
   totalRef.innerHTML = view;
+}
+
+// function for clear cart products
+function clearCart(){
+  cart = {};
+
+  loadCartList();
+
+  localSave();
+  
+}
+
+// function to remove product from cart
+
+function deleteProduct(id){
+  delete cart[id];
+  loadCartList();
+  localSave();
 }
